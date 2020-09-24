@@ -10,5 +10,11 @@ namespace ToDoList.Controllers
     {
       return View();
     }
+
+    [Route("/squirrel_pics")]
+    public ActionResult SquirrelPics()
+    {
+      return View();
+    }
   }
 }
