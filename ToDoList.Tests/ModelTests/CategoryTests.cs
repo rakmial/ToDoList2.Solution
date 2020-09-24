@@ -31,6 +31,16 @@ namespace ToDoList.Test
     }
 
     [TestMethod]
+    public void AddItem_AddsItemToCategory_Void()
+    {
+      Category testCat = new Category("testCat");
+      Item testItem = new Item("testItem");
+      testCat.AddItem(testItem);
+      List<Item> testItemList = new List<Item> {testItem};
+      CollectionAssert.AreEqual(testItemList, testCat.Items);
+    }
+
+    [TestMethod]
     public void GetAll_ReturnsListOfCategories_ListCategory()
     {
       Category test1 = new Category("test1");

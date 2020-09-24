@@ -1,0 +1,14 @@
+@using ToDoList.Models;
+
+<h3>Items in @Model["category"].Name</h3>
+
+<ol>
+@foreach (Item item in @Model["items"])
+{
+  <li><a href='/categories/@Model["category"].Id/items/@item.Id'>@item.Description</a></li>
+}
+</ol>
+
+<p><a href='/categories/@Model["category"].Id/items/new'>Add Item</a></p>
+<p><a href="/categories">Return to Category list</a></p>
+<p><a href="/">Return to Home</a></p>
