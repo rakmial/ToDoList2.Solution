@@ -26,5 +26,10 @@ namespace ToDoList.Models
     {
       return _instances;
     }
+
+    public static Category Find(int id)
+    {
+      return _instances[id-1];
+    }
   }
 }
