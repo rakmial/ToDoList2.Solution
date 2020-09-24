@@ -29,5 +29,14 @@ namespace ToDoList.Test
       Assert.AreEqual(test1.Id, 1);
       Assert.AreEqual(test2.Id, 2);
     }
+
+    [TestMethod]
+    public void GetAll_ReturnsListOfCategories_ListCategory()
+    {
+      Category test1 = new Category("test1");
+      Category test2 = new Category("test2");
+      List<Category> testList = new List<Category> {test1, test2};
+      CollectionAssert.AreEqual(testList, Category.GetAll());
+    }
   }
 }
