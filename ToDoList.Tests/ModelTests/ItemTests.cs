@@ -94,5 +94,19 @@ namespace ToDoList.Tests
       //Assert
       Assert.AreEqual(1, result);
     }
+
+    [TestMethod]
+    public void Find_FindByIdReturnsItem_Item()
+    {
+      //Arrange
+      string description = "Pet Ludwig.";
+      Item item = new Item(description);
+
+      //Act
+      Item found = Item.Find(1);
+
+      //Assert
+      Assert.AreEqual(item, found);
+    }
   }
 }

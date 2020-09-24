@@ -24,5 +24,10 @@ namespace ToDoList.Models
     {
       _instances.Clear();
     }
+
+    public static Item Find(int id)
+    {
+      return _instances[id-1];
+    }
   }
 }
