@@ -21,6 +21,19 @@ namespace ToDoList.Controllers
       return RedirectToAction("Index");
     }
 
+    [HttpPost("/categories/{categoryId}/items")]
+    public ActionResult Create(int categoryId, string description)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Category foundCat = Category.Find(categoryId);
+      Item newItem = new Item(description);
+      foundCat.AddItem(newItem);
+      List<Item> categoryItems = foundCat.Items;
+      model.Add("items", categoryItems);
+      model.Add("category", foundCat);
+      return View("Show", model);
+    }
+
     [HttpGet("/categories/new")]
     public ActionResult New()
     {
