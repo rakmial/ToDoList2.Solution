@@ -17,20 +17,20 @@ namespace ToDoList.Tests
 
     public ItemTest()
     {
-      DBConfiguration.ConnectionString() = "\
-      server=localhost;\
-      user id=root;\
-      password=crabcake;\
-      port=3306;\
-      database=to_do_list_test;";
+      DBConfiguration.ConnectionString = 
+      "server=localhost;"+
+      "user id=root;"+
+      "password=crabcake;"+
+      "port=3306;"+
+      "database=to_do_list_test;";
     }
 
-//    [TestMethod]
-//    public void ItemConstructor_CreatesInstanceOfItem_Item()
-//    {
-//      Item newItem = new Item("test");
-//      Assert.AreEqual(typeof(Item), newItem.GetType());
-//    }
+    [TestMethod]
+    public void ItemConstructor_CreatesInstanceOfItem_Item()
+    {
+      Item newItem = new Item("test");
+      Assert.AreEqual(typeof(Item), newItem.GetType());
+    }
 //
 //    [TestMethod]
 //    public void GetDescription_ReturnsDescription_String()
@@ -62,19 +62,19 @@ namespace ToDoList.Tests
 //      Assert.AreEqual(updatedDescription, result);
 //    }
 //
-//    [TestMethod]
-//    public void GetAll_ReturnsEmptyList_ItemList()
-//    {
-//      // Arrange
-//      List<Item> newList = new List<Item> { };
-//
-//      // Act
-//      List<Item> result = Item.GetAll();
-//
-//      // Assert
-//      CollectionAssert.AreEqual(newList, result);
-//    }
-//
+    [TestMethod]
+    public void GetAll_ReturnsEmptyListfromDB_ItemList()
+    {
+      // Arrange
+      List<Item> newList = new List<Item> { };
+
+      // Act
+      List<Item> result = Item.GetAll();
+
+      // Assert
+      CollectionAssert.AreEqual(newList, result);
+    }
+
 //    [TestMethod]
 //    public void GetAll_ReturnsItems_ItemList()
 //    {
