@@ -129,18 +129,19 @@ namespace ToDoList.Tests
 //      Assert.AreEqual(1, result);
 //    }
 //
-//    [TestMethod]
-//    public void Find_FindByIdReturnsItem_Item()
-//    {
-//      //Arrange
-//      string description = "Pet Ludwig.";
-//      Item item = new Item(description);
-//
-//      //Act
-//      Item found = Item.Find(1);
-//
-//      //Assert
-//      Assert.AreEqual(item, found);
-//    }
+    [TestMethod]
+    public void Find_FindByIdReturnsItem_Item()
+    {
+      //Arrange
+      string description = "Pet Ludwig.";
+      Item item = new Item(description);
+      item.Save();
+
+      //Act
+      Item found = Item.Find(item.Id);
+
+      //Assert
+      Assert.AreEqual(item, found);
+    }
   }
 }
