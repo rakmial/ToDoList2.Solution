@@ -5,9 +5,11 @@ namespace ToDoList.Models
 {
   public class Item
   {
+    //Properties
     public string Description { get; set; }
     public int Id { get; }
 
+    //Constructors
     public Item(string description)
     {
       Description = description;
@@ -17,6 +19,17 @@ namespace ToDoList.Models
     {
       Description = description;
       Id = id;
+    }
+
+    public override bool Equals(System.Object other)
+    {
+      if (other is Item)
+      {
+        Item newItem = (Item) other;
+        bool equalDescript = (this.Description == newItem.Description);
+        return equalDescript;
+      }
+      return false;
     }
 
     public static List<Item> GetAll()

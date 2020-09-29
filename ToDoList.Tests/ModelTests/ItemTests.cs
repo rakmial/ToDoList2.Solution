@@ -31,6 +31,15 @@ namespace ToDoList.Tests
       Item newItem = new Item("test");
       Assert.AreEqual(typeof(Item), newItem.GetType());
     }
+
+    [TestMethod]
+    public void Equals_ReturnsTrueIfDescriptionsAreSame_Bool()
+    {
+      Item first = new Item("pet Ludwig");
+      Item second = new Item("pet Ludwig");
+
+      Assert.AreEqual(first, second);
+    }
 //
 //    [TestMethod]
 //    public void GetDescription_ReturnsDescription_String()
