@@ -1,0 +1,15 @@
+@{Layout = "_Layout";}
+
+@using ToDoList.Models;
+@model List<ToDoList.Models.Item>;
+
+<h1>Items</h1>
+
+<ul>
+  @foreach (Item item in Model)
+  {
+    <li>@Html.ActionLink($"{item.Description}", "Details", new { id = item.ItemId })</li>
+  }
+</ul>
+
+<p>@Html.Actionlink("Add new Item", "Create")</p>

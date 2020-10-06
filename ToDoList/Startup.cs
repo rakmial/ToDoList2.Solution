@@ -25,7 +25,7 @@ namespace ToDoList
       services.AddMvc();
       services.AddEntityFrameworkMySql()
         .AddDbContext<ToDoListContext>(options => options
-        .UseMySql(Configuration["ConnectionStrings:DefaultConection"]));
+        .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
     }
 
     public void Configure(IApplicationBuilder app)
