@@ -1,10 +1,10 @@
 @{Layout = "_Layout";}
 
-@model ToDoList.Models.Item
+@model ToDoList.Models.Category
 
 <h2>Are you sure?</h2>
 
-@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)
+@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)
 @using (Html.BeginForm())
 {
   <input type="submit" value="Delete" />

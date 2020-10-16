@@ -8,9 +8,9 @@
 <ul>
   @foreach (Category category in Model)
   {
-    <li>@Html.ActionLink($"{category.Description}", "Details", new { id = category.CategoryId })</li>
+    <li>@Html.ActionLink($"{category.Name}", "Details", new { id = category.CategoryId })</li>
   }
 </ul>
 
-<p>@Html.Actionlink("Add new Category", "Create")</p>
+<p>@Html.ActionLink("Add new Category", "Create")</p>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>

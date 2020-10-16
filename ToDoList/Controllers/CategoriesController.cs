@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ToDoList.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace ToDoList.Controllers
 
     public ActionResult Create()
     {
+      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
       return View();
     }
 
