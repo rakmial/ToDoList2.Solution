@@ -1,56 +1,72 @@
-//using System.Collections.Generic;
-//using System;
-//using Microsoft.AspNetCore.Mvc;
-//using ToDoList.Models;
-//
-//namespace ToDoList.Controllers
-//{
-//  public class CategoriesControllers : Controller
-//  {
-//    [HttpGet("/categories")]
-//    public ActionResult Index()
-//    {
-//      List<Category> allCategories = Category.GetAll();
-//      return View(allCategories);
-//    }
-//
-//    [HttpPost("/categories")]
-//    public ActionResult Create(string categoryName)
-//    {
-//      Category newCat = new Category(categoryName);
-//      return RedirectToAction("Index");
-//    }
-//
-//    [HttpPost("/categories/{categoryId}/items")]
-//    public ActionResult Create(int categoryId, string description)
-//    {
-//      Dictionary<string, object> model = new Dictionary<string, object>();
-//      Category foundCat = Category.Find(categoryId);
-//      Item newItem = new Item(description);
-//      newItem.Save();
-//      foundCat.AddItem(newItem);
-//      List<Item> categoryItems = foundCat.Items;
-//      model.Add("items", categoryItems);
-//      model.Add("category", foundCat);
-//      return View("Show", model);
-//    }
-//
-//    [HttpGet("/categories/new")]
-//    public ActionResult New()
-//    {
-//      return View();
-//    }
-//  
-//
-//    [HttpGet("/categories/{id}")]
-//    public ActionResult Show(int id)
-//    {
-//      Dictionary<string, object> model = new Dictionary<string, object>();
-//      Category selectCat = Category.Find(id);
-//      List<Item> categoryItems = selectCat.Items;
-//      model.Add("category", selectCat);
-//      model.Add("items", categoryItems);
-//      return View(model);
-//    }
-//  }
-//}
+using Microsoft.AspNetCore.Mvc;
+using ToDoList.Models;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+
+namespace ToDoList.Controllers
+{
+  public class CategoriesController : Controller
+  {
+    private readonly ToDoListContext _db;
+
+    public CategoriesController(ToDoListContext db)
+    {
+      _db = db;
+    }
+
+    public ActionResult Index()
+    {
+      List<Category> model = _db.Categories.ToList();
+      return View(model);
+    }
+
+    public ActionResult Create()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public ActionResult Create(Category category)
+    {
+      _db.Categories.Add(category);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Details(int id)
+    {
+      Category thisCategory = _db.Categories.FirstOrDefault(categories => categories.CategoryId == id);
+      return View(thisCategory);
+    }
+
+    public ActionResult Edit(int id)
+    {
+      Category thisCategory = _db.Categories.FirstOrDefault(categories => categories.CategoryId == id);
+      return View(thisCategory);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Category category)
+    {
+      _db.Entry(category).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Delete(int id)
+    {
+      Category thisCategory = _db.Categories.FirstOrDefault(categories => categories.CategoryId == id);
+      return View(thisCategory);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Category thisCategory = _db.Categories.FirstOrDefault(categories => categories.CategoryId == id);
+      _db.Categories.Remove(thisCategory);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+  }
+}
